@@ -39,7 +39,7 @@ if env('DJANGO_ENV') and env('DJANGO_ENV') == "dev":
 
 
 if DEBUG:
-    ALLOWED_HOSTS = ["localhost"]
+    ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
 
 
 # Application definition
@@ -139,27 +139,27 @@ USE_TZ = True
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
-LOGGING = {
-    'version': 1,
-    'filters': {
-        'require_debug_true': {
-            '()': 'django.utils.log.RequireDebugTrue',
-        }
-    },
-    'handlers': {
-        'console': {
-            'level': 'DEBUG',
-            'filters': ['require_debug_true'],
-            'class': 'logging.StreamHandler',
-        }
-    },
-    'loggers': {
-        'django.db.backends': {
-            'level': 'DEBUG',
-            'handlers': ['console'],
-        }
-    }
-}
+# LOGGING = {
+#     'version': 1,
+#     'filters': {
+#         'require_debug_true': {
+#             '()': 'django.utils.log.RequireDebugTrue',
+#         }
+#     },
+#     'handlers': {
+#         'console': {
+#             'level': 'DEBUG',
+#             'filters': ['require_debug_true'],
+#             'class': 'logging.StreamHandler',
+#         }
+#     },
+#     'loggers': {
+#         'django.db.backends': {
+#             'level': 'DEBUG',
+#             'handlers': ['console'],
+#         }
+#     }
+# }
 
 
 
@@ -180,14 +180,14 @@ JWT_AUTH = {
 }
 
 
-SHOPIFY_APP_NAME = 'MishiPayDevelopmentTestApp'
-SHOPIFY_APP_API_KEY = os.environ.get('SHOPIFY_APP_API_KEY')
-SHOPIFY_APP_API_SECRET = os.environ.get('SHOPIFY_APP_API_SECRET')
-SHOPIFY_APP_API_SCOPE = ['read_products', 'read_orders']
-SHOPIFY_APP_API_VERSION = "0000-00"
-SHOPIFY_APP_IS_EMBEDDED = True
-SHOPIFY_APP_DEV_MODE = True
+SHOPIFY_APP_NAME = env('SHOPIFY_APP_NAME')
+SHOPIFY_APP_API_KEY = env('SHOPIFY_APP_API_KEY')
+SHOPIFY_PASSWORD = env('SHOPIFY_PASSWORD')
+SHOPIFY_SHARED_SECRET = env('SHOPIFY_SHARED_SECRET')
+SHOPIFY_STORE_FRONT_ACCESS_TOKEN = env('SHOPIFY_STORE_FRONT_ACCESS_TOKEN')
+SHOPIFY_API_VERSION = env('SHOPIFY_API_VERSION')
+SHOPIFY_SCOPE=['read_products', 'write_orders']
 
-# AUTHENTICATION_BACKENDS = (
-#     'shopify_auth.backends.ShopUserBackend',
-# )
+
+
+
